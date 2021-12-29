@@ -1,4 +1,4 @@
-import Posts from './posts';
+import Posts from "./posts";
 
 const PageSize = 10;
 
@@ -7,15 +7,15 @@ export default (page, sort) => {
   const end = PageSize * page;
 
   const posts = Posts.slice(start, end);
-  if (sort === 'new') {
+  if (sort === "new") {
     posts.sort((a, b) => {
       return new Date(b.created) - new Date(a.created);
     });
-  } else if (sort === 'old') {
+  } else if (sort === "old") {
     posts.sort((a, b) => {
       return new Date(a.created) - new Date(b.created);
     });
-  } else if (sort === 'top') {
+  } else if (sort === "top") {
     posts.sort((a, b) => {
       return b.votes - a.votes;
     });
