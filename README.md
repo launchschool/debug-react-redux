@@ -1,7 +1,5 @@
 # Debugging Test
 
-Howdy Candidate, we've created this app to get a better idea of your experience debugging web applications. Best of luck!
-
 ## Getting Started
 
 1. **Initialize your environment**
