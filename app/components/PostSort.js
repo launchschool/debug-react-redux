@@ -24,28 +24,34 @@ const Options = [
 const PostSort = () => {
   const { sort } = useSelector((state) => state.sort);
   const [menuOpen, setMenuOpen] = useState(false);
-
   const dispatch = useDispatch();
 
-  const handleChangeSort = useCallback((sort) => {
-    dispatch(changeSort(sort));
-    dispatch(fetchPosts({ sort }));
-    dispatch(recountVotes());
-  });
+  const handleChangeSort = useCallback(
+    (sort) => {
+      dispatch(changeSort(sort));
+    },
+    [dispatch]
+  );
+
+  const updateDisplayedPosts = useCallback(
+    (sort) => {
+      setMenuOpen(false);
+      dispatch(fetchPosts({ sort }));
+      dispatch(recountVotes());
+    },
+    [dispatch]
+  );
 
   useEffect(() => {
-    setMenuOpen(false);
-    handleChangeSort(sort);
-  }, [sort, handleChangeSort]);
+    updateDisplayedPosts(sort);
+  }, [sort, updateDisplayedPosts]);
 
   const handleOpenMenu = () => {
     if (menuOpen) {
       return;
     }
-
     setMenuOpen(true);
   };
-
   const renderDropdown = () => {
     if (!menuOpen) {
       return null;
@@ -63,7 +69,6 @@ const PostSort = () => {
         </div>
       );
     });
-
     return (
       <div className="dropdown">
         <div className="sorts">
