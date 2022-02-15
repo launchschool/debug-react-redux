@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack",
     "file-server": "http-server ./dist -p 3001 -c-1",
-    "server": "npx babel-node --presets @babel/preset-env ./server/CannyServer.js",
+    "server": "npx babel-node --presets @babel/preset-env ./server/server.js",
     "submit": "npm run zip && npm run upload",
     "upload": "curl -X POST --form 'submission=@debug.zip' --form 'secret=@secret.txt' https://canny.io/api/assessments/submit",
     "zip": "bestzip debug.zip app/* dist/index.html server/* package.json README.md webpack.config.js"
